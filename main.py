@@ -8,9 +8,6 @@ from display import *
 COLORS = ["red", "blue", "green", "yellow", "cyan", "magenta"]
 
 
-
-
-
 def main():
     # set up the background
     board()
@@ -26,26 +23,29 @@ def main():
             return ap.Car(230, -(5 + lane * 10), 10, 180, colour)
         elif direction == 270:
             return ap.Car((5 + lane * 10), 230, 10, 270, colour)
-    new_car(0, "red", 1)
-    new_car(90, "blue", 2)
-    new_car(180, "green", 3)
-    new_car(270, "yellow", 0)
+
+    ap.Car(-235, 15, 10, 0, "red")
+    ap.Car(25, 275, 10, 270, "blue")
+    # new_car(0, "red", 1)
+    # new_car(90, "blue", 2)
+    # new_car(180, "green", 3)
+    # new_car(270, "yellow", 0)
     # c = ap.Car(-230, 20, 10, 0, "red")
     # c2 = ap.Car(25, 230, 10, 270, "blue")
     time_steps = 0
     while True:
         # if time_steps % 20 == 0:
-        #     c = new_car((time_steps // 20 * 90) % 360, random.choice(COLORS),                (time_steps // 5) % 3)
+        #     c = new_car((time_steps // 20 * 90) % 360,
+        #                 random.choice(COLORS),                (time_steps // 5) % 3)
         sc.update()
         for car in ap.Car.carlist:
             car.move(time_steps)
         ap.draw_reservation_grid(sc)
         # time.sleep(0.01)
         time_steps += 1
-        if all([(c.xpos < -240 or c.xpos > 240 or c.ypos < -240 or c.ypos > 240) for c in ap.Car.carlist]):
+        if all([(c.xpos < -300 or c.xpos > 300 or c.ypos < -300 or c.ypos > 300) for c in ap.Car.carlist]):
             print("Simulation finished")
             break
-
 
 
 if __name__ == "__main__":

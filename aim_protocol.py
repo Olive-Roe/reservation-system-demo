@@ -30,8 +30,8 @@ def check_reservation_collision(x_index, y_index, start, end):
     for reservation in RESERVATIONS[x_index][y_index]:
         # [color, start_time, end_time, car_id]
         # if reservation[0] == "white":
-            # this reservation is a placeholder
-            # continue
+        # this reservation is a placeholder
+        # continue
         r_start = reservation[1]
         r_end = reservation[2]
         # only works if the requested reservation is completely outside the existing one
@@ -75,7 +75,7 @@ def check_trajectory(trajectory, starting_time, colour="green", car_index=0):
         # idea: function to check if tiles are adjacent (in four directions), then check with progressively larger distances unless it skips a tile
         x, y = trajectory(time)
         x_coord, y_coord = get_indices_from_coord(x, y)
-        if x < -240 or x > 240 or y < -240 or y > 240:
+        if x < -300 or x > 300 or y < -300 or y > 300:
             raise ValueError(
                 f"car {car_index} with color {Car.carlist[car_index].colour} never entered the intersection")
     # add starting reservation to the list
@@ -246,11 +246,12 @@ class Car:
 
         # check if path is available
         if self.path_available == False:
+            self.velocity = 10
             flag = check_trajectory(
                 self.get_trajectory(time), time, self.colour, self.id)
             if flag == False:
                 # reservation is booked
-                self.velocity -= 1
+                self.velocity -= 5
             else:
                 # reservation is available, save the visited tiles
                 self.visited_tiles = flag
