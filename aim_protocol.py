@@ -13,7 +13,6 @@ GRID_SIZE = 80
 GRANULARITY = 8
 # an array representing an n by n grid and the reservations associated with each tile
 RESERVATIONS = []
-COLLISION = False
 
 
 def create_reservations_list(granularity: int):
@@ -49,21 +48,6 @@ def add_reservation(x_index, y_index, start_time, end_time, colour="green", car_
     RESERVATIONS[x_index][y_index].append(
         [colour, start_time, end_time, car_index])
     return len(RESERVATIONS[x_index][y_index]) - 1
-
-
-# def add_starting_reservation(x_index, y_index, start_time, colour="green"):
-#     "Adds the start of a reservation to the global RESERVATIONS list"
-#     global RESERVATIONS
-#     RESERVATIONS[x_index][y_index][0] = colour
-#     RESERVATIONS[x_index][y_index][1] = start_time
-
-
-# def add_ending_reservation(x_index, y_index, end_time, colour="green"):
-#     "Adds the end of a reservation to the global RESERVATIONS list"
-#     global RESERVATIONS
-#     start_time = RESERVATIONS[x_index][y_index][1]
-#     RESERVATIONS[x_index][y_index][0] = colour
-#     RESERVATIONS[x_index][y_index][2] = end_time
 
 
 def check_trajectory(trajectory, starting_time, colour="green", car_index=0):
@@ -182,7 +166,7 @@ def draw_reservation_grid(screen):
         t.penup()
 
     granularity = GRANULARITY
-    t.goto(-40, -40)
+    t.goto(-40, -30)
     t.setheading(0)
     for y in range(granularity):
         for x in range(granularity):
