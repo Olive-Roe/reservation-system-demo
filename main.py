@@ -29,6 +29,7 @@ def main():
     new_car(0, "red", 1)
     new_car(90, "blue", 2)
     new_car(180, "green", 3)
+    new_car(270, "yellow", 0)
     # c = ap.Car(-230, 20, 10, 0, "red")
     # c2 = ap.Car(25, 230, 10, 270, "blue")
     time_steps = 0
@@ -41,6 +42,9 @@ def main():
         ap.draw_reservation_grid(sc)
         # time.sleep(0.01)
         time_steps += 1
+        if all([(c.xpos < -240 or c.xpos > 240 or c.ypos < -240 or c.ypos > 240) for c in ap.Car.carlist]):
+            print("Simulation finished")
+            break
 
 
 

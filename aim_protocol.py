@@ -28,9 +28,10 @@ def check_reservation_collision(x_index, y_index, start, end):
         # no reservations yet
         return False
     for reservation in RESERVATIONS[x_index][y_index]:
-        if reservation[0] == "white":
+        # [color, start_time, end_time, car_id]
+        # if reservation[0] == "white":
             # this reservation is a placeholder
-            continue
+            # continue
         r_start = reservation[1]
         r_end = reservation[2]
         # only works if the requested reservation is completely outside the existing one
